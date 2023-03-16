@@ -15,6 +15,7 @@ public class Main
 		FormulaControll carro[][] = new FormulaControll[2][7];
 		FormulaControll carroVet[] = new FormulaControll[14];
 		FormulaControll aux = new FormulaControll(0, 0, null, null);
+		FormulaControll termino = new FormulaControll(0, 0, perm, pausa);
 
 		for(int i = 1; i <= 2; i++)
 		{
@@ -25,11 +26,7 @@ public class Main
 			}
 		}
 		
-		try {
-			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		termino.terminoCorrida();
 		
 		for (int i = 0; i < 7; i++)
 		{

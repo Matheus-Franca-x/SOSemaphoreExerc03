@@ -10,6 +10,7 @@ public class FormulaControll
 	private int equipeId;
 	private Semaphore semaforo;
 	private Semaphore pausa;
+	private Semaphore termino;
 	private int voltas = 0;
 	public double bestTime = 1000;
 	
@@ -19,6 +20,7 @@ public class FormulaControll
 		this.equipeId = equipe;
 		this.semaforo = semaforo;
 		this.pausa = pausa;
+		this.termino = pausa;
 	}
 	
 	public void corrida()
@@ -48,6 +50,7 @@ public class FormulaControll
 						e1.printStackTrace();
 					}
 				}
+				termino.release();
 			}
 		}.start();
 	}
@@ -72,6 +75,18 @@ public class FormulaControll
 			if (this.bestTime > tempoF)
 			{
 				this.bestTime = tempoF;
+			}
+		}
+	}
+	
+	public void terminoCorrida()
+	{
+		for (int i = 0; i < 24; i++)
+		{
+			try {
+				termino.acquire();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}
